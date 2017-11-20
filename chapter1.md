@@ -28,7 +28,7 @@ või õhtuga(*time*) ja laudkonnas suurus (*size*).
     - sobiva `geom_<...>` funktsiooniga nii, et tulemuseks oleks siniste(`"royalblue"`) tulpadega tulpdiagramm, 
 mis näitaks jootraha andnud laudkondade arvu nädalapäevade kaupa. 
     - Muuda *x*-telge sobiva `scale_x_<...>` funktsiooniga nii, et *x*-teljel oleksid nädalapäevad ajalises 
-järjestuses ja päevade nimed pikalt väljakirjutatuna ("thursday", "friday", "saturday", "sunday", väiksed tähed!). Lisaks pane *x*- teljele nimi *Day of week*. 
+järjestuses ja päevade nimed pikalt väljakirjutatuna ("thursday", "friday", "saturday", "sunday", väiksed tähed!). Lisaks pane *x*- teljele nimi *Day of week*. Kirjuta `scale` funktsioonis argumentide, millele väärtused omistad, nimed välja.
     - Nimeta *y*-telg nimega *Counts* kasutades funktsiooni `ylab()`. 
 
 
