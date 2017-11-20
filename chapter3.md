@@ -26,7 +26,7 @@ Töölaual on sama andmestik `jootraha`. Pakett **ggplot2** on juba aktiveeritud
 
 `@hint`
 - Uue tunnuse leidmiseks peab leidma jagatise `jootraha$tip/jootraha$total_bill`.
-- Histogrammi joonistamiseks pead  tunnuse `ratio` siduma `x`-teljega ja kasutama `geom_histogramm()` elementi.
+- Histogrammi joonistamiseks pead  tunnuse `ratio` siduma `x`-teljega ja kasutama `geom_histogram()` elementi.
 - Erandliku vaatluse andmestikust leidmiseks saad kasutada filtreerimist: `jootraha[jootraha$ratio > 0.5, ]`.
 
 `@pre_exercise_code`
