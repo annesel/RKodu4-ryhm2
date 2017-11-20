@@ -425,7 +425,7 @@ names(jootraha)
  
 
 # Ülesanne : Joondiagramm (soo kaupa)
-ggplot(jootraha, aes(_____________________________)) + 
+ggplot(jootraha, aes(x = _______, y = ____________, ________________)) + 
         stat_summary(geom = "_______",  fun.y = _________)  + 
                     scale_x_continuous(breaks = 1:6)
 
