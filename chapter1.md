@@ -1,130 +1,329 @@
 ---
-title       : Insert the chapter title here
-description : Insert the chapter description here
-attachments :
-  slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
+title       : Tulpdiagamm
+description : Tulpdiagrammid  ggplot2  paketiga
 
 ---
-## A really bad movie
-
-```yaml
-type: MultipleChoiceExercise
-lang: r
-xp: 50
-skills: 1
-key: 5dd589f031
-```
-
-Have a look at the plot that showed up in the viewer to the right. Which type of movie has the worst rating assigned to it?
-
-`@instructions`
-- Adventure
-- Action
-- Animation
-- Comedy
-
-`@hint`
-Have a look at the plot. Which color does the point with the lowest rating have?
-
-`@pre_exercise_code`
-```{r}
-# The pre exercise code runs code to initialize the user's workspace.
-# You can use it to load packages, initialize datasets and draw a plot in the viewer
-
-movies <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/course/introduction_to_r/movies.csv")
-
-library(ggplot2)
-
-ggplot(movies, aes(x = runtime, y = rating, col = genre)) + geom_point()
-```
-
-`@sct`
-```{r}
-# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
-
-msg_bad <- "That is not correct!"
-msg_success <- "Exactly! There seems to be a very bad action movie in the dataset."
-test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
-```
-
----
-## More movies
+## Tulpdiagamm esinemissagedustega
 
 ```yaml
 type: NormalExercise
+key: 21d676b9c0
 lang: r
 xp: 100
 skills: 1
-key: 6a9b7b3257
 ```
+Töölaual on andmestik `jootraha`. Tegu on ühe kelneri kogutud andmetega paari kuu
+pikkusest tööperioodist. Registreeritud on kõik laudkonnad, kes selle perioodi jooksul 
+andsid jootraha. Kirja sai laudkonna arve suurus  dollarites (*total_bill*), saadud jootraha dollarites(*tip*),
+arve maksja sugu (*sex*), kas laudkonnas oli suitsetajaid (*smoker*), nädalapäev(*day*), kas tegu oli lõuna 
+või õhtuga(*time*) ja laudkonnas suurus (*size*).
 
-In the previous exercise, you saw a dataset about movies. In this exercise, we'll have a look at yet another dataset about movies!
+Ülesandeks on nende andmete iseloomustamine graafikute abil, kasutades paketi **ggplot2** vahendeid.
 
-A dataset with a selection of movies, `movie_selection`, is available in the workspace.
 
 `@instructions`
-- Check out the structure of `movie_selection`.
-- Select movies with a rating of 5 or higher. Assign the result to `good_movies`.
-- Use `plot()` to  plot `good_movies$Run` on the x-axis, `good_movies$Rating` on the y-axis and set `col` to `good_movies$Genre`.
+
+- **Ülesanne 1** Aktiveeri pakett **ggplot2**.
+- **Ülesanne 2** Täienda joonise koodi<br>
+    - sobiva `geom_<...>` funktsiooniga nii, et tulemuseks oleks siniste(`"royalblue"`) tulpadega tulpdiagramm, 
+mis näitaks jootraha andnud laudkondade arvu nädalapäevade kaupa. 
+    - Muuda *x*-telge sobiva `scale_x_<...>` funktsiooniga nii, et *x*-teljel oleksid nädalapäevad ajalises 
+järjestuses ja päevade nimed pikalt väljakirjutatuna ("thursday", "friday", "saturday", "sunday", väiksed tähed!). Lisaks pane *x*- teljele nimi *Day of week*. 
+    - Nimeta *y*-telg nimega *Counts* kasutades funktsiooni `ylab()`. 
+
+
+
+
 
 `@hint`
-- Use `str()` for the first instruction.
-- For the second instruction, you should use `...[movie_selection$Rating >= 5, ]`.
-- For the plot, use `plot(x = ..., y = ..., col = ...)`.
+- Tulpdiagammi saamiseks on vaja kasutada `geom_bar()` kihti. Selleks, et tulpade värv fikseerida kasuta argumenti `fill`, aga ära seda pane `aes(.)` funktsiooni argumendiks.
+- Skaala muutmise funktsioonis `scale_x_discrete` peaks määrama argumendid: `name` telje nime muutmiseks, `limits` väärtuste järjekorra seadmiseks ja `labels` selleks, et päevanimed pikalt välja oleks kirjutatud.
 
 `@pre_exercise_code`
 ```{r}
-# You can also prepare your dataset in a specific way in the pre exercise code
-load(url("https://s3.amazonaws.com/assets.datacamp.com/course/teach/movies.RData"))
-movie_selection <- Movies[Movies$Genre %in% c("action", "animated", "comedy"), c("Genre", "Rating", "Run")]
-
-# Clean up the environment
-rm(Movies)
+# jootraha andmestik, reshape2
+library(reshape2)
+jootraha <-tips
 ```
 
 `@sample_code`
 ```{r}
-# movie_selection is available in your workspace
-
-# Check out the structure of movie_selection
-
-
-# Select movies that have a rating of 5 or higher: good_movies
+# Tutvu andmetega
+summary(jootraha)
 
 
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
+# Ülesanne 1: aktiveeri pakett
+_______(ggplot2)
+
+# Ülesanne 2: täienda koodi
+j1 <- ggplot(jootraha, aes(x = day)) + 
+             geom________  + 
+                    scale_x____________   +
+                    ylab(label = "_________")
+j1
+```
+
+`@solution`
+```{r}
+# Tutvu andmetega
+summary(jootraha)
+
+
+# Ülesanne 1: aktiveeri pakett
+library(ggplot2)
+
+# Ülesanne 2: täienda koodi
+j1 <- ggplot(jootraha, aes(x = day)) + 
+             geom_bar(fill = "royalblue") + 
+                    scale_x_discrete(name = "Day of week", 
+                             limits = c("Thur", "Fri", "Sat", "Sun"), 
+                             labels = c("thursday", "friday", "saturday", "sunday")) +
+                    ylab(label = "Counts")
+j1
+```
+
+`@sct`
+```{r}
+
+test_function("library",
+              args = NULL,
+              index = 1,
+              eval = TRUE,
+              eq_condition = "equivalent",
+              not_called_msg =  "Esimeses ülesandes kasuta funktsiooni `library()`.")     
+
+
+
+#
+#test_ggplot(1, exact_scale = TRUE)
+
+test_ggplot(index = 1, 
+    all_fail_msg = NULL, 
+    check_data = TRUE, 
+    data_fail_msg = "Kontrolli argumendiks antud andmestikku.", 
+    check_aes = TRUE, 
+    aes_fail_msg = "Kontrolli `aes(.)` argumente.", 
+    exact_aes = FALSE, 
+    check_geom = TRUE, 
+    geom_fail_msg = "Viga on `geom` elemendi lisamise käsus.",
+    exact_geom = FALSE, 
+    check_geom_params = TRUE, 
+    check_facet = TRUE, 
+    facet_fail_msg = NULL,
+    check_scale = TRUE, 
+    scale_fail_msg = "Probleem on `scale_` käsus.",
+    exact_scale = FALSE, 
+    check_coord = TRUE, 
+    coord_fail_msg = NULL, 
+    exact_coord = FALSE, 
+    check_stat = TRUE,
+    stat_fail_msg = NULL,
+    exact_stat = FALSE, 
+    check_extra = NULL, extra_fail_msg = NULL, exact_extra = NULL, check = NULL)
+
+
+
+
+test_function("ylab",
+              args = "label",
+              index = 1,
+              eval = TRUE,
+              eq_condition = "equivalent",
+              not_called_msg =  "Kasuta *y*-telje nime määramiseks funktsiooni `ylab()`. Liida see olemasolevale joonisele.", 
+              args_not_specified_msg = "Määra *y*-telje nimi `label` argumendiga",
+              incorrect_msg = "*y*-telje nimi on vale!")     
+
+
+
+success_msg("Esimene joonis sai valmis, tubli!")
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+## Tulpdiagamm osakaaludega
+```yaml
+type: NormalExercise
+key: d9325fd201
+lang: r
+xp: 100
+skills: 1
+```
+
+Töölaual on sama andmestik `jootraha`. Pakett **ggplot2** on juba aktiveeritud.
+
+
+Selles ülesandes punktis kasuta *y* telje sildistamiseks paketi **scales** abi. Kui pakett on aktiveeritud, siis saab `scales_` käskudes kasutada väärtuste sildistamiseks mõningaid eeldefineeritud vorme, näiteks protsendi kuvamiseks `labels = percent`, dollarimärgi lisamiseks summadele `labels = dollar` jne.
+
+
+
+
+`@instructions`
+- **Ülesanne** Täienda antud koodi nii, et tulemuseks oleks tulpdiagramm, mis esitaks iga päeva kohta lõuna (*Lunch*) ja õhtusöökide (*Dinner*) osakaalud. St iga päeva kohta joonisel üks tulp, tulba sees jaotus lõuna ja õhtusöökide vahel antud erineva värviga ja tulba kõrgus summeeruks väärtuseks üks st esitaks tervikut. Muuda vaikimisi skaalasid joonisel järgnevalt:
+    - sobiva  `scale_` funktsiooniga tee muudatused nii, et *y*-telje nimi oleks *Percentage* ja telje väärtused oleks sildistatud *%*-märgiga;
+    - teise `scale_` funktsiooniga muuda värvilegendi pealkiri kujule *Time*;
+    - *x*-telje nimi muuda samuti suurtähega algavaks: *Day*, kasuta nime muutmiseks siin `xlab()` funktsiooni.
+
+
+`@hint`
+- Tingliku jaotuse esitamiseks kasuta `geom` kihti kujul: `geom_bar(position = "fill")`.
+- Skaala käsud mida vaja läheb on `scale_y_continuous()` ja `scale_fill_hue()`.
+
+
+`@pre_exercise_code`
+```{r}
+# jootraha andmestik, reshape2
+library(reshape2)
+jootraha <-tips
+jootraha$day <- factor(jootraha$day, levels = c("Thur", "Fri", "Sat", "Sun"))
+library(ggplot2)
+```
+
+`@sample_code`
+```{r}
+# Vaata tunnuste nimed üle (nädalapäev: day, söögiaeg: time)
+names(jootraha)
+
+# Ülesanne : tulpdiagramm osakaaludega
+library(scales)
+j1 <- ggplot(jootraha, aes(x = ________, ________ = time)) + 
+            geom___________  +
+                    scale______________ + 
+                    scale______________ +
+                    xlab_______ 
+j1
+
+ 
 
 ```
 
 `@solution`
 ```{r}
-# movie_selection is available in your workspace
+# Vaata tunnuste nimed üle (nädalapäev: day, söögiaeg: time)
+names(jootraha)
 
-# Check out the structure of movie_selection
-str(movie_selection)
+# Ülesanne : tulpdiagramm osakaaludega
+library(scales)
+j1 <- ggplot(jootraha, aes(x = day, fill = time)) + 
+            geom_bar(position = "fill") +
+                    scale_y_continuous(name = "Percentage", labels = percent) + 
+                    scale_fill_hue(name = "Time") + 
+                    xlab(label = "Day")
+j1
 
-# Select movies that have a rating of 5 or higher: good_movies
-good_movies <- movie_selection[movie_selection$Rating >= 5, ]
-
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
-plot(good_movies$Run, good_movies$Rating, col = good_movies$Genre)
 ```
 
 `@sct`
 ```{r}
-# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+test_ggplot(index = 1, 
+    all_fail_msg = NULL, 
+    check_data = TRUE, 
+    data_fail_msg = "Kontrolli argumendiks antud andmestikku.", 
+    check_aes = TRUE, 
+    aes_fail_msg = "Kontrolli `aes(.)` argumente.", 
+    exact_aes = FALSE, 
+    check_geom = TRUE, 
+    geom_fail_msg = "Viga on `geom` elemendi lisamise käsus. Tegu peab olema tulpdiagammiga (`bar`). Lisaks peab määrama `position` argumendi.",
+    exact_geom = FALSE, 
+    check_geom_params = TRUE, 
+    check_facet = TRUE, 
+    facet_fail_msg = NULL,
+    check_scale = TRUE, 
+    scale_fail_msg = "Probleem on  ühes `scale_` käsus. *y*-telje muutmiseks kasuta `scale_y_continuous()`, värvilegendi korral `scale_fill_hue()`. *y*-telje korral kasuta väärtuste sildistamiseks **scales** paketis olemasolevat vormingut.",
+    exact_scale = FALSE, 
+    check_coord = TRUE, 
+    coord_fail_msg = NULL, 
+    exact_coord = FALSE, 
+    check_stat = TRUE,
+    stat_fail_msg = NULL,
+    exact_stat = FALSE, 
+    check_extra = NULL, extra_fail_msg = NULL, exact_extra = NULL, check = NULL)
 
-test_function("str", args = "object",
-              not_called_msg = "You didn't call `str()`!",
-              incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
 
-test_object("good_movies")
 
-test_function("plot", args = "x")
-test_function("plot", args = "y")
-test_function("plot", args = "col")
 
-test_error()
+test_function("scale_y_continuous",
+              args = NULL,
+              index = 1,
+              eval = TRUE,
+              eq_condition = "equivalent",
+              not_called_msg =  "Kasuta *y*-telje nime määramiseks ja skaala esituse muutmiseks  funktsiooni `scale_y_continuous()`. Lisa argumendid telje nime ja väärtuste siltide jaoks.", 
+              args_not_specified_msg = paste("Funktsioonis `scale_y_continuous()` on puudu argument " , c("`name`", "`label`")),
+              incorrect_msg = paste("Funktsioonis `scale_y_continuous()` on vale väärtus  argumendil " , c("`name`", "`label`")))     
 
-success_msg("Good work!")
+
+
+
+
+test_function("scale_fill_hue",
+              args = NULL,
+              index = 1,
+              eval = TRUE,
+              eq_condition = "equivalent",
+              not_called_msg =  "Kasuta siin värvilegendi pealkirja muutmiseks  funktsiooni `scale_fill_hue()` argumendiga `name`.", 
+              args_not_specified_msg = NULL,
+              incorrect_msg = NULL)     
+
+
+
+
+
+test_function("xlab",
+              args = "label",
+              index = 1,
+              eval = TRUE,
+              eq_condition = "equivalent",
+              not_called_msg =  "Kasuta *x*-telje nime määramiseks funktsiooni `xlab()`. Liida see olemasolevale joonisele.", 
+              args_not_specified_msg = "Määra *x*-telje nimi `label` argumendiga",
+              incorrect_msg = "*x*-telje nimi on vale!")     
+
+
+
+
+
+
+
+success_msg("Teine joonis sai valmis, tubli! Järgmises kahes ülesandes on vaadatud kahe arvulise tunnuse seose uurimiseks sobivat graafikutüüpi")
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
