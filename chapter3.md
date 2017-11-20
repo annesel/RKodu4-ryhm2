@@ -21,7 +21,7 @@ Töölaual on sama andmestik `jootraha`. Pakett **ggplot2** on juba aktiveeritud
 
 `@instructions`
 - **Ülesanne 1** Lisa andmestikku uus tunnus nimega `ratio`, mille väärtuseks oleks kelneri saadud jootraha ja makstud arve jagatis.
-- **Ülesanne 2** Täienda antud koodi nii, et tulemuseks oleks jootraha ja makstud arve suhte histogramm.
+- **Ülesanne 2** Täienda antud koodi nii, et tulemuseks oleks jootraha ja makstud arve suhte histogramm. Histogrammil vali intervallide arvuks 15.
 - **Ülesanne 3** Kui joonis valmis, siis uuri veidi andmestikku: kas laudkond, kelle jootraha moodustas arvest rohkem kui poole käis lõunasöögil (*Lunch*) või õhtusöögil(*Dinner*)? Omista õige vastus  stringina (`"Lunch"` või `"Dinner"`) muutujale `erind`.
 
 `@hint`
@@ -65,7 +65,7 @@ jootraha$ratio <- jootraha$tip/jootraha$total_bill
 
 
 # Ülesanne 2:  Histogramm (ära muuda 'y = ..density..' osa koodist!)
-ggplot(jootraha, aes(x = ratio, y = ..density..)) + geom_histogram()
+ggplot(jootraha, aes(x = ratio, y = ..density..)) + geom_histogram(bins = 15)
 
 
 # Ülesanne 3: Kas erandlik laudkond käis õhtu või lõunasöögil?
