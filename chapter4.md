@@ -173,7 +173,7 @@ Töölaual on sama andmestik `jootraha`. Pakett **ggplot2** on juba aktiveeritud
 
 `@hint`
 -  Joondiagrammi saamiseks peab iga laudkonna suuruse kohta olema leitud keskmine inimesekohta antud jootraha suurus. 
-- Keskmise arvutamise funktsioon tuleb `stat_summary()` käsus anda `fun.y` väärtuseks.
+- Keskmise arvutamise funktsioon (`mean`) tuleb `stat_summary()` käsus anda `fun.y` väärtuseks.
 - Joondiagramm tekib, kui `stat_summary()` käsus argumendi `geom` väärtuseks on `"line"`.
 
 `@pre_exercise_code`
