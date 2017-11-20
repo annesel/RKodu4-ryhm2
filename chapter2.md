@@ -173,12 +173,12 @@ Töölaual on sama andmestik `jootraha`. Pakett **ggplot2** on juba aktiveeritud
 `@instructions`
 - **Ülesanne 1** Täienda antud koodi nii, et tulemuseks oleks hajuvusdiagramm restoraniarve suuruse ja jootraha suuruse vahel. Siin vali *x*-teljele arve suuruse tunnus.
 Hajuvusdiagrammi punktid värvi vastavalt sellele, mis soost arve maksjaga oli tegu, punkti kuju määra selle järgi kas laudkonnas oli suitsetaja või mitte. Värv ja punktikuju lisa `geom_` funktsiooni kaudu. 
-- **Ülesanne 2** Lisa vastava `ggplot2` paketi käsuga joonisele lineaarse regeressiooni sirge koos varieeruvust näitavate piiridega.
+- **Ülesanne 2** Lisa sobiva `geom_`  käsuga joonisele lineaarse regeressiooni sirge koos varieeruvust näitavate piiridega.
 
 `@hint`
 - Hajuvusdiagrammi saamiseks kasuta `geom_point()` käsku.
 - Värvi ja punkti kuju määramiseks lisa `geom_point()` argumendiks `aes()` funktsiooni argumendid:   `color` ja `shape`.
-- Funktsiooniga `stat_smooth()` saab lisada mudeli sirge, selleks pane `method = lm` argumendiks.
+- Funktsiooniga `geom_smooth()` saab lisada mudeli sirge, selleks pane funktsiooni argumendiks `method = lm`.
 
 `@pre_exercise_code`
 ```{r}
@@ -215,7 +215,7 @@ j1
 
 
 # Ülesanne 2:  Regressioonsirge lisamine
-j1 + stat_smooth(method = lm)
+j1 + geom_smooth(method = lm)
 
 ```
 
@@ -253,14 +253,14 @@ test_ggplot(index = 1,
  
  
  
-test_function("stat_smooth",
+test_function("geom_smooth",
               args = "method",
               index = 1,
               eval = TRUE,
               eq_condition = "equivalent",
-              not_called_msg =  "Kasuta  mudeli sirge lisamiseks  funktsiooni `stat_smooth()`.", 
-              args_not_specified_msg = "Määra `stat_smooth()` argumendi `method` väärtus.",
-              incorrect_msg = "Funktsiooni `stat_smooth()` argumendi `method` väärtus ei ole õige.")      
+              not_called_msg =  "Kasuta  mudeli sirge lisamiseks  funktsiooni `geom_smooth()`.", 
+              args_not_specified_msg = "Määra `geom_smooth()` argumendi `method` väärtus.",
+              incorrect_msg = "Funktsiooni `geom_smooth()` argumendi `method` väärtus ei ole õige.")      
  
  
 
