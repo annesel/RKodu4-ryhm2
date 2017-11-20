@@ -27,7 +27,7 @@ Andmestikus on arvutatud lisatunnus `ratio`, mis näitab jootraha ja arve suurus
 
 `@hint`
 -  Karpdiagammi joonistamiseks kasuta `geom_boxplot()` elementi.
-- Kuna `size` on arvtunnus, mitte grupeeriv tunnus, siis on vaja `aes()` funktsiooni vaja lisada `group = size`.
+- Kuna `size` on arvtunnus, mitte grupeeriv/diskreetne tunnus, siis on gruppide määramiseks vaja `aes()` funktsiooni vaja lisada `group = size`.
 
 
 
