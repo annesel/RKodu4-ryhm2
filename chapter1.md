@@ -180,7 +180,7 @@ Selles ülesandes punktis kasuta *y* telje sildistamiseks paketi **scales** abi.
 `@instructions`
 - **Ülesanne** Täienda antud koodi nii, et tulemuseks oleks tulpdiagramm, mis esitaks iga päeva kohta lõuna (*Lunch*) ja õhtusöökide (*Dinner*) osakaalud. St iga päeva kohta joonisel üks tulp, tulba sees jaotus lõuna ja õhtusöökide vahel antud erineva värviga ja tulba kõrgus summeeruks väärtuseks üks st esitaks tervikut. Muuda vaikimisi skaalasid joonisel järgnevalt:
     - sobiva  `scale_` funktsiooniga tee muudatused nii, et *y*-telje nimi oleks *Percentage* ja telje väärtused oleks sildistatud *%*-märgiga;
-    - teise `scale_` funktsiooniga muuda värvilegendi pealkiri kujule *Time*;
+    - teise skaalafunktsiooniga `scale_<___>_hue`  muuda värvilegendi pealkiri kujule *Time*;
     - *x*-telje nimi muuda samuti suurtähega algavaks: *Day*, kasuta nime muutmiseks siin `xlab()` funktsiooni.
 
 
