@@ -74,7 +74,7 @@ suurim  <- "Sat"
 `@sct`
 ```{r}
 
-
+# limits ja breaks mõlemad läbi läheks
 test_or(
 test_ggplot(index = 1, 
     all_fail_msg = NULL, 
