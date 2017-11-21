@@ -38,7 +38,7 @@ jootraha <-tips
 # tunnuste nimed andmestikus(total_bill on arve, tip on jootraha dollarites, day nädalapäev)
 names(jootraha)
 
-# Ülesanne1: Hajuvusdiagramm värvilisite punktidega
+# Ülesanne1: Hajuvusdiagramm värviliste punktidega
 j1 <- ggplot(jootraha, aes(x = ______, y = _______)) + 
             geom____________  +
                        scale_______hue(________________)
@@ -54,7 +54,7 @@ suurim  <- "_____"
 # tunnuste nimed andmestikus(total_bill on arve, tip on jootraha dollarites, day nädalapäev)
 names(jootraha)
 
-# Ülesanne 1: Hajuvusdiagramm värvilisite punktidega
+# Ülesanne 1: Hajuvusdiagramm värviliste punktidega
 j1 <- ggplot(jootraha, aes(x = total_bill, y = tip)) + 
             geom_point(aes(color = day)) +
                     scale_color_hue(limits = c("Thur", "Fri", "Sat", "Sun"))
